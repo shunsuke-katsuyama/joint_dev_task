@@ -116,14 +116,38 @@ echo PHP_EOL;
 print("#####q11#####".PHP_EOL);
 $sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]];
 
-  # 以下に回答を記載
+
+$sports2 = [];
+foreach($sports as $key => $sport){
+  if(is_array($sport)) {
+      $sports2 = array_merge($sports2,$sport);
+  } else {
+      array_push($sports2,$sport);
+  }
+}
+
+$sports2 = array_unique($sports2);
+$sports2 = array_values($sports2);
+
+$sports3 = [];
+foreach($sports2 as $key => $sport) {
+  $number = $key +1;
+  $sport2 = "No." .$number." ".$sport;
+  array_push($sports3 , $sport2);
+}
+
+print_r("ユーザの趣味一覧".PHP_EOL);
+foreach($sports3 as $sport) {
+  print($sport .PHP_EOL);
+}
+
 
 echo PHP_EOL;
 
 print("#####q12#####".PHP_EOL);
 $data = [ "user" => [ "name" => "satou", "age" => 33 ] ];
 
-  # 以下に回答を記載
+print_r($data["user"]["name"]);
 
 echo PHP_EOL;
 
@@ -131,22 +155,38 @@ print("#####q13#####".PHP_EOL);
 $user_data = [ "name" => "神里", "age" => 31, "address" => "埼玉"];
 $update_data = [ "age" => 32, "address" => "沖縄" ];
 
-  # 以下に回答を記載
+$user_data = $update_data + $user_data;
+print_r($user_data);
 
 echo PHP_EOL;
 
 print("#####q14#####".PHP_EOL);
 $data = [ "name" => "satou", "age" => 33, "address" => "saitama", "hobby" => "soccer", "email" => "hoge@fuga.com" ];
 
-  # 以下に回答を記載
+$data1 = [];
+foreach($data as $new_data) {
+  array_push($data1,$new_data);
+}
+
+print_r($data1);
 
 echo PHP_EOL;
 
 print("#####q15#####".PHP_EOL);
 $data1 = [ "name" => "saitou", "hobby" => "soccer", "age" => 33, "role" => "admin" ];
-$data2 = [ "name" => "yamada", "hobby" => "baseball", "role" => "normal" ];
 
-  # 以下に回答を記載
+if(array_key_exists('age',$data1)) {
+  print('OK'.PHP_EOL);
+} else {
+  print('NG'.PHP_EOL);
+}
+
+$data2 = [ "name" => "yamada", "hobby" => "baseball", "role" => "normal" ];
+if(array_key_exists('age',$data2)){
+  print('OK'.PHP_EOL);
+} else {
+  print('NG'.PHP_EOL);
+}
 
 echo PHP_EOL;
 
@@ -158,16 +198,16 @@ $users = [
   [ "name" => "nakamura", "age" => 41 ]
 ];
 
-  # 以下に回答を記載
+foreach($users as $key => $user) {
+  echo "私の名前は" .$user["name"]. "です。年齢は" .$user["age"]. "です。".PHP_EOL;
+}
 
 echo PHP_EOL;
 
 print("#####q17#####".PHP_EOL);
 class User
 {
-
   # コードを追加
-
 }
 
 $user1 = new User("神里",32,"男");
@@ -212,14 +252,14 @@ print("#####q20#####".PHP_EOL);
 class Human
 {
 
-  # コードを追加
+#コードを追加
 
 }
 
 class Zoo
 {
 
-  # コードを追加
+#コードを追加
 
 }
 
@@ -237,5 +277,4 @@ foreach($humans as $human){
 }
 
 echo PHP_EOL;
-
 ?>
